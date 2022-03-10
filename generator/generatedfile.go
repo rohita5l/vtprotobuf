@@ -7,11 +7,28 @@ package generator
 import (
 	"fmt"
 
-	"github.com/planetscale/vtprotobuf/vtproto"
-
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
+	"google.golang.org/protobuf/runtime/protoimpl"
+	descriptorpb "google.golang.org/protobuf/types/descriptorpb"
+)
+
+var file_github_com_planetscale_vtprotobuf_vtproto_ext_proto_extTypes = []protoimpl.ExtensionInfo{
+	{
+		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
+		ExtensionType: (*bool)(nil),
+		Field:         64101,
+		Name:          "vtproto.mempool",
+		Tag:           "varint,64101,opt,name=mempool",
+		Filename:      "github.com/planetscale/vtprotobuf/vtproto/ext.proto",
+	},
+}
+
+// Extension fields to descriptorpb.MessageOptions.
+var (
+	// optional bool mempool = 64101;
+	E_Mempool = &file_github_com_planetscale_vtprotobuf_vtproto_ext_proto_extTypes[0]
 )
 
 type GeneratedFile struct {
@@ -31,7 +48,7 @@ func (b *GeneratedFile) ShouldPool(message *protogen.Message) bool {
 	if b.Ext.Poolable[message.GoIdent] {
 		return true
 	}
-	ext := proto.GetExtension(message.Desc.Options(), vtproto.E_Mempool)
+	ext := proto.GetExtension(message.Desc.Options(), E_Mempool)
 	if mempool, ok := ext.(bool); ok {
 		return mempool
 	}
